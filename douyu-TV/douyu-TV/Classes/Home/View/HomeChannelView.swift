@@ -21,7 +21,6 @@ class HomeChannelView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        
         self.channelCollectionView.register(UINib(nibName: "CollectionChannelCell", bundle: nil), forCellWithReuseIdentifier: kChannelCellID)
     }
     
@@ -34,13 +33,11 @@ class HomeChannelView: UIView {
     
     
     /// 频道模型数组
-    public var channelModels : [ChannelModel]?{
+    public var channelModels : [BaseLiveGroupModel]?{
         
         didSet{
             // 刷新collectionView
             channelCollectionView.reloadData()
-            
-            
         }
     }
 
@@ -56,9 +53,7 @@ extension HomeChannelView : UICollectionViewDataSource,UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kChannelCellID, for: indexPath) as! CollectionChannelCell
-        
         let model = channelModels![indexPath.item]
-        
         cell.channelModel = model
         
         return cell

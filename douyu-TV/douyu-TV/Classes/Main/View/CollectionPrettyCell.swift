@@ -12,7 +12,7 @@ import Kingfisher
 class CollectionPrettyCell: UICollectionViewCell {
 
     
-    var anchorM : AnchorModel?{
+    var anchorM : BaseLiveModel?{
         didSet{
             
             guard let anchorM = anchorM else { return }

@@ -10,24 +10,22 @@ import UIKit
 import Kingfisher
 
 
-class CollectionNormalCell: UICollectionViewCell {
+class CollectionNormalCell : UICollectionViewCell {
     
-    public var anchorM : AnchorModel?{
+    public var anchorM : BaseLiveModel?{
         didSet{
-            
-            guard let anchorM = anchorM else { return }
             
             let options : [KingfisherOptionsInfoItem] = [KingfisherOptionsInfoItem.transition(ImageTransition.flipFromTop(0.5))]
             
             // url的字符串
-            let roomImage = anchorM.room_src
-            let url = URL(string: roomImage)
+            let roomImage = anchorM?.room_src
+            let url = URL(string: roomImage!)
             roomImageView.kf.setImage(with: url, placeholder: UIImage(named: "Img_default")!, options: options, progressBlock: nil, completionHandler: nil)
 
             // 设置主播昵称
-            anchorNameLabel.text = anchorM.nickname
+            anchorNameLabel.text = anchorM?.nickname
             // 设置主播所在城市
-            liveTitleLabel.text = anchorM.room_name;
+            liveTitleLabel.text = anchorM?.room_name;
             
         }
     }

@@ -77,8 +77,6 @@ class HomeViewController: UIViewController,PageTitleViewDelegate,PageContentView
         // 1.设置UI信息
         setupUI()
         
-        
-        
 
     }
     

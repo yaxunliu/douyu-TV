@@ -11,7 +11,7 @@ import Kingfisher
 class CollectionRecycleCell: UICollectionViewCell {
     
     /// 监听数据模型数据发生改变，cell的图片
-    public var recycleM : RecycleModel? {
+    public var recycleM : RecommendRecycleModel? {
         didSet{
             guard let model = recycleM else { return }
             

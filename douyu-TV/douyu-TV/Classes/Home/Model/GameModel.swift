@@ -8,10 +8,7 @@
 
 import UIKit
 
-class GameModel: ChannelModel {
-
-    
-
+class GameModel {
 
     
     

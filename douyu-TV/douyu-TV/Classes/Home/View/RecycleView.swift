@@ -16,15 +16,13 @@ class RecycleView: UIView {
     
     fileprivate var timer : Timer?
     
-    public var recycleArrays : [RecycleModel]?{
+    public var recycleArrays : [RecommendRecycleModel]?{
         
         didSet{
             /// 1.确保数组中一定有值
             guard recycleArrays != nil else { return }
-            
             /// 2.刷新collectionView
             recycleCollectionView.reloadData()
-            
             /// 3.设置pageControl
             pageControl.numberOfPages = recycleArrays?.count ?? 0
             

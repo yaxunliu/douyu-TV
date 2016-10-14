@@ -9,42 +9,30 @@
 import UIKit
 import Kingfisher
 
+
 class CollectionChannelCell: UICollectionViewCell {
     
-    /// 频道图片
+    // 频道图片
     @IBOutlet weak var channelImageView: UIImageView!
-    /// 频道标题
+    // 频道标题
     @IBOutlet weak var channelTitleLabel: UILabel!
-    
-    
-    
-    /// 数据模型
-    public var channelModel : ChannelModel?{
-        
+    // 数据模型
+    public var channelModel : BaseLiveGroupModel?{
         didSet{
-            /// 守护模型
+            // 守护模型
             guard let model = channelModel else { return }
-            
-            /// 设置模型数据
+            // 设置模型数据
             let image = ImageResource.init(downloadURL: URL(string: model.icon_url)!, cacheKey: model.icon_url)
-            channelImageView.kf.setImage(with: image, placeholder: UIImage(named: "Image_column_default_44x44_"), options: nil, progressBlock: nil
-                , completionHandler: nil)
             channelTitleLabel.text = model.tag_name
-            
-            
+            channelImageView.kf.setImage(with: image)
         }
     }
     
-    /// 布局子视图
+    // 布局子视图
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        
-        /// 设置圆角layer.masktoBounds
-//        channelImageView.layer.masksToBounds = true
-//        channelImageView.layer.cornerRadius = channelImageView.frame.width * 0.5
-        channelImageView.layer.shouldRasterize = true 
-        channelImageView.layer.rasterizationScale = 0.1
+        channelImageView.layer.masksToBounds = true
+        channelImageView.layer.cornerRadius = channelImageView.frame.width * 0.5
     }
     
 

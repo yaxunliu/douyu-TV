@@ -9,8 +9,7 @@
 import UIKit
 /// 定义标识符
 private let kRecomendCell = "kRecomendCell"
-private let kRecomendHeader = "kRecomendHeader"
-private let kRecomendPrettyCell = "kRecomendPrettyCell"
+private let kAmuseHeaderView = "kAmuseHeaderView"
 
 
 /// 定义常量值
@@ -19,7 +18,7 @@ private let kItemWidth = (kScreenWidth - 3 * kMargin) / 2
 private let kItemHeight = (kItemWidth * 3) / 4
 private let kPrettyCellH = kItemWidth * 4 / 3
 private let kHeaderHeight : CGFloat = 50
-private let kRecyViewH : CGFloat = kScreenWidth * 3 / 8
+private let kTopHeaderH : CGFloat = kScreenWidth * 3 / 8
 private let kChannelViewH : CGFloat = kScreenWidth * 1.8 / 8
 
 
@@ -42,26 +41,35 @@ class AmuseViewController: UIViewController {
         collectionView.delegate = self
         /// 注册单元格
         collectionView.register(UINib.init(nibName: "CollectionNormalCell", bundle: nil), forCellWithReuseIdentifier: kRecomendCell)
-        collectionView.register(UINib.init(nibName: "CollectionPrettyCell", bundle: nil), forCellWithReuseIdentifier: kRecomendPrettyCell)
         
         /// 注册头视图
-        collectionView.register(UINib(nibName: "RecomandHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: kRecomendHeader)
+        collectionView.register(UINib(nibName: "RecomandHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: kAmuseHeaderView)
         collectionView.autoresizingMask = [.flexibleHeight,.flexibleWidth]
         collectionView.backgroundColor = UIColor.white
         
         //设置内边距
-        collectionView.contentInset = UIEdgeInsets(top: kRecyViewH + kChannelViewH, left: 0, bottom: 0, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: kTopHeaderH, left: 0, bottom: 0, right: 0)
         
         return collectionView
         }()
-
     
+    /// 懒加载topHeaderView
+    fileprivate lazy var amuseView : AmuseHeaderView = {
+        
+        let amuseView = AmuseHeaderView.viewFromNib()
+        amuseView.frame = CGRect(x: 0, y: -kTopHeaderH, width: kScreenWidth, height: kTopHeaderH)
+        
+        return amuseView
+         
+    }()
     
+    // MARK:jiaz视图
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor.randomColor()
         view.addSubview(collectionView)
+        
+        collectionView.addSubview(amuseView)
     
     }
 
@@ -88,6 +96,15 @@ extension AmuseViewController : UICollectionViewDelegate , UICollectionViewDataS
         
         return cell
 
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: kAmuseHeaderView, for: indexPath)
+        
+        
+        return headerView
+        
     }
     
     

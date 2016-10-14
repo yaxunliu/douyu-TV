@@ -20,7 +20,7 @@ class RecomandHeaderView: UICollectionReusableView {
     
     
     /// 直播组模型
-    public var liveG : ChannelModel? {
+    public var liveG : BaseLiveGroupModel? {
         
         didSet{
             tagNameLabel.text = liveG?.tag_name
@@ -28,8 +28,6 @@ class RecomandHeaderView: UICollectionReusableView {
         }
     }
     
-    
-
     
     /// 更多按钮的点击方法
     @IBAction func moreDataClick(_ sender: UIButton) {

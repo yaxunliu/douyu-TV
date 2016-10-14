@@ -18,8 +18,6 @@ class MainViewController: UITabBarController {
         addChildVc("Live")
         addChildVc("Follow")
         addChildVc("Profile")
-
-    
     }
 
     fileprivate func addChildVc(_ storyName: String){

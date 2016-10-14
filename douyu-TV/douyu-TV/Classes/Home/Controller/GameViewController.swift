@@ -43,8 +43,6 @@ class GameViewController: UIViewController {
         
         commonGameV.frame = CGRect(x: 0, y: -kCommonGameViewH, width: kScreenWidth, height: kCommonGameViewH)
         
-        
-        
         return commonGameV
         
     }()
@@ -71,15 +69,13 @@ class GameViewController: UIViewController {
         
             collectionView.register(UINib(nibName: "RecomandHeaderView", bundle: nil), forSupplementaryViewOfKind:UICollectionElementKindSectionHeader, withReuseIdentifier:kGameHeaderViewID)
         
-        
-            return collectionView
+        return collectionView
         
         }()
     
     override func viewDidLoad() {
     
         super.viewDidLoad()
-        
         // 1.设置UI信息
         setupUI()
         // 2.请求数据
@@ -93,7 +89,6 @@ class GameViewController: UIViewController {
 // MARK:设置UI信息 请求数据
 extension GameViewController {
 
-        
     fileprivate func setupUI() {
         
         /// 1.collectionView
@@ -127,10 +122,8 @@ extension GameViewController : UICollectionViewDataSource , UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kGameCollectionID, for: indexPath) as! CollectionChannelCell
-        
         let model = gameViewModel.allGames[indexPath.item]
-        
-        cell.channelModel = model 
+        cell.channelModel = model
         
         return cell
         

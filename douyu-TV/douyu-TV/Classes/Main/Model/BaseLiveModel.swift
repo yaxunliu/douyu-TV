@@ -4,11 +4,11 @@
 //
 //  Created by 刘亚勋 on 2016/10/11.
 //  Copyright © 2016年 刘亚勋. All rights reserved.
-//  主播间模型
+//  基础直播间模型
 
 import UIKit
 
-class LiveBaseModel : NSObject {
+class BaseLiveModel : NSObject {
     /// 房间id
     var room_id : String = ""
     /// 房间图片资源
@@ -24,10 +24,15 @@ class LiveBaseModel : NSObject {
     /// 主播头像
     var avatar_small : String = ""
     
+    
+    override init() {
+        super.init()
+    }
+    
     /// 构造函数
     init(dict : [String : NSObject]) {
         super.init()
-        // KVC 赋值
+        
         setValuesForKeys(dict)
     }
     

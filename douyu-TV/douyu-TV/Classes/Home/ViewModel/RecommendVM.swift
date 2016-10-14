@@ -8,85 +8,70 @@
 
 import UIKit
 
-class RecommendVM {
+class RecommendVM :   BaseViewModel {
     
-    /// 所有直播的数组
-    public lazy var gameList : [LiveGroup] = [LiveGroup]()
-    /// 频道数组
-    public lazy var channelList : [LiveGroup] = [LiveGroup]()
+    /// 游戏 数组
+    public lazy var gameList : [BaseLiveGroupModel] = [BaseLiveGroupModel]()
+    
+    /// 直播组模型 数组
+    public lazy var channelList : [BaseLiveGroupModel] = [BaseLiveGroupModel]()
+    
     /// 轮播图数组
-    public lazy var recycleList : [RecycleModel] = [RecycleModel]()
+    public lazy var recycleList : [RecommendRecycleModel] = [RecommendRecycleModel]()
     
     /// 懒加载属性
-    fileprivate lazy var hotData : LiveGroup = LiveGroup()
-    fileprivate lazy var prettyData : LiveGroup = LiveGroup()
+    fileprivate lazy var hotData : BaseLiveGroupModel = BaseLiveGroupModel()
+    fileprivate lazy var prettyData : BaseLiveGroupModel = BaseLiveGroupModel()
+    
     
 }
 
 // MARK:网络请求（推荐界面）
-extension RecommendVM{
-    
+extension RecommendVM {
     /// 请求游戏组列表数据
     func requestData( finisLoadData:@escaping ()->()){
         /// 0.请求参数
         let parameters = ["limit":"4","time": NSDate.getCurrentTimeInterval() as NSString,"offset":"0"]
-        
         /// 0.1.创建GCD组
         let disGroup = DispatchGroup()
-        
-        // 1.获取‘最热‘数据
+        // 1.获取‘最热‘数据、
         disGroup.enter()
-        NetworkTool.requestJSONData(methodType: .GET, urlString: "http://capi.douyucdn.cn/api/v1/getbigDataRoom", parameters: parameters) { ( result ) in
-            /// 1.1.验证返回值是否有值
-            guard let resultDict = result as? [String : NSObject] else { return }
-            /// 1.2.取出数组
-            guard let dataArray = resultDict["data"] as? [[String : NSObject]] else { return }
-            
-            /// 1.3.创建一个直播数
+        requestLiveRoomData(URLString: "http://capi.douyucdn.cn/api/v1/getbigDataRoom", parameters: parameters) {
             self.hotData.tag_name = "最热"
             self.hotData.icon_url = "home_header_hot"
-            /// 1.4.字典转模型
-            for dict in dataArray {
-                let anchor = AnchorModel(dict: dict);
-                self.hotData.groups.append(anchor)
+            for model in self.liveModelsData{
+                self.hotData.roomList.append(model)
             }
+            self.liveModelsData.removeAll()
             disGroup.leave()
         }
-        
-        // 2.获取’颜值‘数据
+      
+        // 2.获取‘颜值数据’
         disGroup.enter()
-        NetworkTool.requestJSONData(methodType: .GET, urlString: "http://capi.douyucdn.cn/api/v1/getVerticalRoom", parameters: parameters) { (result) in
-            /// 2.1.验证返回值是否有值
-            guard let resultDict = result as? [String : NSObject] else { return }
-            /// 2.1.取出数组
-            guard let dataArray = resultDict["data"] as? [[String : NSObject]] else { return }
-            
-            /// 2.2.创建一个直播数组
-
+        requestLiveRoomData(URLString: "http://capi.douyucdn.cn/api/v1/getVerticalRoom", parameters: parameters) {
+            // 1. 创建一个直播数组
             self.prettyData.tag_name = "颜值"
             self.prettyData.icon_url = "columnYanzhiIcon_20x20_"
-            /// 2.3.字典转模型
-            for dict in dataArray {
-                let anchor = AnchorModel(dict: dict);
-                self.prettyData.groups.append(anchor)
+            for model in self.liveModelsData{
+                
+                self.prettyData.roomList.append(model)
             }
-            /// 2.4.添加到游戏列表中去
             disGroup.leave()
         }
         
-        // 3.获取'游戏'数据http://capi.douyucdn.cn/api/v1/getHotCate?limit=4&time=1476156622$offset=0
+        // 3.获取'游戏'数据
         disGroup.enter()
-        NetworkTool.requestJSONData(methodType: .GET, urlString: "http://capi.douyucdn.cn/api/v1/getHotCate", parameters: parameters) { (result) in
-            /// 3.1.验证返回值是否有值
-            guard let resultDic = result as? [String : NSObject] else { return }
-            /// 3.2.取出数组
-            guard let dataArray = resultDic["data"] as? [[String : NSObject]] else { return }
-            /// 3.3.字典转模型
-            for dict in dataArray {
-                let live = LiveGroup(dict: dict)
-                /// 3.4.添加到数组中去 
-                self.channelList.append(live)
-                self.gameList.append(live)
+    
+        requestLiveGroupData(URLString: "http://capi.douyucdn.cn/api/v1/getHotCate", parameters: parameters) { 
+            // 1. 创建一个直播数组
+            self.prettyData.tag_name = "颜值"
+            self.prettyData.icon_url = "columnYanzhiIcon_20x20_"
+            for model in self.liveGroupsData{
+                
+                // 2.添加到数组中去
+                self.channelList.append(model)
+                self.gameList.append(model)
+                
             }
             disGroup.leave()
         }
@@ -94,6 +79,7 @@ extension RecommendVM{
         disGroup.notify(queue: DispatchQueue.main) {
             self.gameList.insert(self.prettyData, at: 0)
             self.gameList.insert(self.hotData, at: 0)
+            
             finisLoadData()
         }
         
@@ -111,7 +97,7 @@ extension RecommendVM{
             
             for dic in  dataArray {
               
-                let model = RecycleModel(dict: dic)
+                let model = RecommendRecycleModel(dict: dic)
                 self.recycleList.append(model)
             }
             // 回调闭包
