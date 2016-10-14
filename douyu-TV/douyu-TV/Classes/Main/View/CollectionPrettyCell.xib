@@ -1,19 +1,94 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CollectionPrettyCell" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CollectionPrettyCell" customModule="Douyu_TV" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="292" height="275"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                <rect key="frame" x="0.0" y="0.0" width="292" height="275"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="96B-c8-tGb" userLabel="底部视图">
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yanzhiUserIcon_12x12_" translatesAutoresizingMaskIntoConstraints="NO" id="b2l-jh-GLO">
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="主播的名称 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zv3-Ej-Yga">
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="主播的地址" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bOa-zF-i6M">
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico_location" translatesAutoresizingMaskIntoConstraints="NO" id="Rrb-3G-gGl"/>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="b2l-jh-GLO" firstAttribute="leading" secondItem="96B-c8-tGb" secondAttribute="leading" id="2PV-bE-xIt"/>
+                            <constraint firstItem="zv3-Ej-Yga" firstAttribute="centerY" secondItem="b2l-jh-GLO" secondAttribute="centerY" id="Xqm-sZ-vgl"/>
+                            <constraint firstItem="b2l-jh-GLO" firstAttribute="centerY" secondItem="96B-c8-tGb" secondAttribute="centerY" id="aCu-Py-8EO"/>
+                            <constraint firstAttribute="trailing" secondItem="bOa-zF-i6M" secondAttribute="trailing" id="cOw-Mf-Eir"/>
+                            <constraint firstItem="bOa-zF-i6M" firstAttribute="centerY" secondItem="zv3-Ej-Yga" secondAttribute="centerY" id="htg-PH-666"/>
+                            <constraint firstItem="bOa-zF-i6M" firstAttribute="leading" secondItem="Rrb-3G-gGl" secondAttribute="trailing" constant="5" id="jUQ-4Q-GHO"/>
+                            <constraint firstAttribute="height" constant="20" id="o9w-Vk-M3k"/>
+                            <constraint firstItem="Rrb-3G-gGl" firstAttribute="centerY" secondItem="bOa-zF-i6M" secondAttribute="centerY" id="th8-M6-Xm6"/>
+                            <constraint firstItem="zv3-Ej-Yga" firstAttribute="leading" secondItem="b2l-jh-GLO" secondAttribute="trailing" constant="2" id="zgr-o1-T4P"/>
+                        </constraints>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Img_default" translatesAutoresizingMaskIntoConstraints="NO" id="K39-gZ-fhH">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V8f-VG-2fN">
+                        <color key="backgroundColor" red="0.40388977529999998" green="0.40394014119999999" blue="0.40386655929999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="Zxo-1N-9g6"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <inset key="contentEdgeInsets" minX="6" minY="0.0" maxX="6" maxY="0.0"/>
+                        <inset key="imageEdgeInsets" minX="-4" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="4312" image="live_end_watch_28x28_">
+                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
+                </subviews>
             </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="96B-c8-tGb" secondAttribute="trailing" id="1bl-OD-9ai"/>
+                <constraint firstAttribute="trailing" secondItem="V8f-VG-2fN" secondAttribute="trailing" constant="2" id="63l-ho-0WR"/>
+                <constraint firstItem="K39-gZ-fhH" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="7Hc-hI-Nor"/>
+                <constraint firstItem="96B-c8-tGb" firstAttribute="top" secondItem="K39-gZ-fhH" secondAttribute="bottom" id="Bmt-11-DDj"/>
+                <constraint firstAttribute="bottom" secondItem="96B-c8-tGb" secondAttribute="bottom" constant="5" id="KL4-sc-Gz3"/>
+                <constraint firstItem="96B-c8-tGb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="UfX-Lr-0pZ"/>
+                <constraint firstItem="V8f-VG-2fN" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="2" id="ch6-65-BdQ"/>
+                <constraint firstAttribute="trailing" secondItem="K39-gZ-fhH" secondAttribute="trailing" id="pZ7-O6-bQt"/>
+                <constraint firstItem="K39-gZ-fhH" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="zsA-eq-mdb"/>
+            </constraints>
+            <size key="customSize" width="292" height="275"/>
+            <connections>
+                <outlet property="anchorCityLabel" destination="bOa-zF-i6M" id="99f-76-egf"/>
+                <outlet property="anchorNameLabel" destination="zv3-Ej-Yga" id="wTS-cc-edD"/>
+                <outlet property="roomImageView" destination="K39-gZ-fhH" id="MGf-pT-O4P"/>
+            </connections>
+            <point key="canvasLocation" x="-179" y="22.5"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="Img_default" width="172" height="103"/>
+        <image name="ico_location" width="12" height="12"/>
+        <image name="live_end_watch_28x28_" width="12" height="12"/>
+        <image name="yanzhiUserIcon_12x12_" width="12" height="12"/>
+    </resources>
 </document>

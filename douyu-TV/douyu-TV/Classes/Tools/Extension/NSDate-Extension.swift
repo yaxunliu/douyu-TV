@@ -7,3 +7,15 @@
 //
 
 import Foundation
+
+public extension NSDate {
+    
+   class func getCurrentTimeInterval () -> String{
+        
+       let timeinterval =  Int(NSDate().timeIntervalSince1970)
+        
+        return "\(timeinterval)"
+        
+    }
+    
+}

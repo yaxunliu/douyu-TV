@@ -8,13 +8,13 @@
 
 import UIKit
 
-private let kTitleViewH : CGFloat = 44
+let kTitleViewH : CGFloat = 44
 
 
 class HomeViewController: UIViewController,PageTitleViewDelegate,PageContentViewDelegate {
 
     /// 标题视图
-    private lazy var titleView : PageTitleView = {[weak self] in
+    fileprivate lazy var titleView : PageTitleView = {[weak self] in
         
         let titleRect = CGRect(x: 0, y:kStatubarH + kNavigationBarH , width: kScreenWidth , height: kTitleViewH)
         
@@ -30,23 +30,25 @@ class HomeViewController: UIViewController,PageTitleViewDelegate,PageContentView
     
     
     // MARK:- PageTitleViewDelegate
-    func pageTitleViewDidClick(titleView: PageTitleView, selectedIndex: Int) {
+    func pageTitleViewDidClick(_ titleView: PageTitleView, selectedIndex: Int) {
         
         // 1.内容视图开始发生改变
-        contentView.setCurrentIndex(index: selectedIndex)
+        contentView.setCurrentIndex(selectedIndex)
                 
     }
     
     /// 内容视图
-    private lazy var contentView : PageContentView = {[weak self] in
+    fileprivate lazy var contentView : PageContentView = {[weak self] in
         /// 确定frame
-        let rect = CGRect(x: 0, y: kStatubarH + kNavigationBarH + kTitleViewH, width: kScreenWidth, height: kScreenHeight - kTitleViewH - kStatubarH - kNavigationBarH - (self?.tabBarController?.tabBar.frame.size.height)!)
-        
+        let rect = CGRect(x: 0, y: kStatubarH + kNavigationBarH + kTitleViewH, width: kScreenWidth, height: kScreenHeight - kTitleViewH - kStatubarH - kNavigationBarH - kTabbarH)
         
         /// 创建子控制器
         var childVcs = [UIViewController]()
+        childVcs.append(RecomendViewController())
+        childVcs.append(GameViewController())
+        childVcs.append(AmuseViewController())
         
-        for _ in 0..<4{
+        for _ in 0..<1{
             let vc = UIViewController()
             vc.view.backgroundColor = UIColor.init(r: CGFloat(arc4random_uniform(255)), g: CGFloat(arc4random_uniform(255)), b: CGFloat(arc4random_uniform(255)))
             
@@ -61,8 +63,8 @@ class HomeViewController: UIViewController,PageTitleViewDelegate,PageContentView
     }()
     
     // MARK: - PageContentViewDelegate
-    func contentViewDidScroll(sourceIndex: Int, targetIndex: Int, progress: CGFloat) {
-        titleView.titleViewDidScroll(sourceIndex : sourceIndex ,targetIndex : targetIndex , progress : progress)
+    func contentViewDidScroll(_ sourceIndex: Int, targetIndex: Int, progress: CGFloat) {
+        titleView.titleViewDidScroll(sourceIndex ,targetIndex : targetIndex , progress : progress)
     }
     
     // MARK: - 系统回调的函数
@@ -74,13 +76,14 @@ class HomeViewController: UIViewController,PageTitleViewDelegate,PageContentView
         
         // 1.设置UI信息
         setupUI()
+        
+        
+        
 
-    
     }
     
-    
     // 0 设置UI信息
-   private func setupUI() {
+   fileprivate func setupUI() {
         
         // 设置导航栏
         setupNavigationBar()
@@ -95,7 +98,7 @@ class HomeViewController: UIViewController,PageTitleViewDelegate,PageContentView
     }
     
     // 1.设置导航栏
-    private func setupNavigationBar() {
+    fileprivate func setupNavigationBar() {
         
         let size = CGSize.init(width: 40, height: 40)
         

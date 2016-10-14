@@ -8,28 +8,46 @@
 
 import UIKit
 
+
 class LoginViewController: UIViewController {
 
+    /// xib视图属性
+    @IBOutlet weak var wechat: UIButton!
+    @IBOutlet weak var qq: UIButton!
+    @IBOutlet weak var sina: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        // 设置边框颜色
+        setupBorderColor()
+        
     }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
+private extension LoginViewController {
+    
+    /// 设置边框颜色
+    func setupBorderColor(){
+        
+        wechat.layer.borderColor = UIColor(r: 51.0, g: 188.0, b: 23.0).cgColor
+        wechat.layer.borderWidth = 1.0
+        
+        qq.layer.borderColor = UIColor(r: 52.0, g: 139.0, b: 255.0).cgColor
+        qq.layer.borderWidth = 1.0
+        
+        sina.layer.borderColor = UIColor(r: 243.0, g: 62.0, b: 62.0).cgColor
+        sina.layer.borderWidth = 1.0
+        
+    }
+    
+}
+
+
+

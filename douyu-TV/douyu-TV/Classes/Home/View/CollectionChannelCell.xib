@@ -1,19 +1,61 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CollectionChannelCell" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CollectionChannelCell" customModule="Douyu_TV" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="123" height="112"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                <rect key="frame" x="0.0" y="0.0" width="123" height="112"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="企鹅直播" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFo-h1-JDn">
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FDz-oT-5oV">
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="EUf-Eg-hUJ"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Img_default" translatesAutoresizingMaskIntoConstraints="NO" id="c6K-dX-h7l">
+                        <color key="backgroundColor" red="0.97254901959999995" green="0.42745098040000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="VUv-dS-duL"/>
+                            <constraint firstAttribute="width" constant="40" id="poT-wH-DaQ"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
             </view>
+            <constraints>
+                <constraint firstItem="pFo-h1-JDn" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="1WZ-DG-03y"/>
+                <constraint firstItem="c6K-dX-h7l" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" constant="-10" id="M9m-C1-tDf"/>
+                <constraint firstAttribute="trailing" secondItem="FDz-oT-5oV" secondAttribute="trailing" id="SCT-cb-I2o"/>
+                <constraint firstItem="FDz-oT-5oV" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ZpX-o5-7fJ"/>
+                <constraint firstAttribute="bottom" secondItem="FDz-oT-5oV" secondAttribute="bottom" id="dqi-8C-wBv"/>
+                <constraint firstItem="pFo-h1-JDn" firstAttribute="top" secondItem="c6K-dX-h7l" secondAttribute="bottom" constant="6" id="lPX-cS-lEX"/>
+                <constraint firstItem="c6K-dX-h7l" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="qmw-ks-O9e"/>
+                <constraint firstAttribute="trailing" secondItem="pFo-h1-JDn" secondAttribute="trailing" id="zqv-p2-sF4"/>
+            </constraints>
+            <size key="customSize" width="123" height="112"/>
+            <connections>
+                <outlet property="channelImageView" destination="c6K-dX-h7l" id="RPG-Ad-i2m"/>
+                <outlet property="channelTitleLabel" destination="pFo-h1-JDn" id="Slx-cf-8fr"/>
+            </connections>
+            <point key="canvasLocation" x="-228.5" y="-70"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="Img_default" width="172" height="103"/>
+    </resources>
 </document>

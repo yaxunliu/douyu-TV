@@ -1,19 +1,36 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CollectionRecycleCell" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CollectionRecycleCell" customModule="Douyu_TV" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="273" height="179"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                <rect key="frame" x="0.0" y="0.0" width="273" height="179"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Img_default" translatesAutoresizingMaskIntoConstraints="NO" id="z2M-Kn-rwS"/>
+                </subviews>
             </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="z2M-Kn-rwS" secondAttribute="bottom" id="Hqo-xj-3yd"/>
+                <constraint firstAttribute="trailing" secondItem="z2M-Kn-rwS" secondAttribute="trailing" id="LYi-0g-NVg"/>
+                <constraint firstItem="z2M-Kn-rwS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="SIL-O1-wks"/>
+                <constraint firstItem="z2M-Kn-rwS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="iNb-wQ-ajb"/>
+            </constraints>
+            <size key="customSize" width="273" height="179"/>
+            <connections>
+                <outlet property="advertisementImageView" destination="z2M-Kn-rwS" id="SaW-jb-vMl"/>
+            </connections>
+            <point key="canvasLocation" x="-83.5" y="-13.5"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="Img_default" width="172" height="103"/>
+    </resources>
 </document>

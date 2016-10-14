@@ -8,6 +8,11 @@
 
 import UIKit
 
-class GameModel: NSObject {
+class GameModel: ChannelModel {
 
+    
+
+
+    
+    
 }

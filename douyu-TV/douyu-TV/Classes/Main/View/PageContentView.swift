@@ -11,7 +11,7 @@ import UIKit
 protocol PageContentViewDelegate : class {
     
     /// 内容视图发生滚动
-    func contentViewDidScroll(sourceIndex : Int ,targetIndex : Int , progress : CGFloat)
+    func contentViewDidScroll(_ sourceIndex : Int ,targetIndex : Int , progress : CGFloat)
     
     
     
@@ -19,35 +19,17 @@ protocol PageContentViewDelegate : class {
 
 private let contentViewID = "contentViewID"
 
-class PageContentView: UIView , UICollectionViewDataSource , UICollectionViewDelegate {
-    
-    //  MARK: ----- 定义属性
-    var startOffsetx : CGFloat = 0
-    private var isFrobitScrollDelegate : Bool = false
-    weak var delegate : PageContentViewDelegate!
-    private var childVcs : [UIViewController]
-    private weak var parentVc : UIViewController?
-    
-    
-    //  MARK: ----- 对外公开方法
-    /// 设置当前下标
-    func setCurrentIndex(index : Int) {
-        
-        isFrobitScrollDelegate = true
-        
-        let offsetX = CGFloat(index) * collectionView.frame.size.width
-        collectionView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: false)
-    }
+class PageContentView: UIView {
     
     //  MARK: ----- 懒加载collectionView
-    private lazy var collectionView : UICollectionView = {[weak self] in
+    fileprivate lazy var collectionView : UICollectionView = {[weak self] in
         
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = (self?.bounds.size)!
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         layout.scrollDirection = UICollectionViewScrollDirection(rawValue: 1)!
-
+        
         
         let collectionV : UICollectionView = UICollectionView(frame: self!.bounds, collectionViewLayout: layout)
         collectionV.dataSource = self
@@ -59,9 +41,80 @@ class PageContentView: UIView , UICollectionViewDataSource , UICollectionViewDel
         
         return collectionV
         
-    }()
+        }()
+
     
-    // MARK: ----- UICollectionViewDelegate , UIScrollViewDelegate
+    // MARK:- ----- 构造函数
+    init(frame: CGRect ,childVcs :[UIViewController] ,parentVc:UIViewController) {
+        
+        self.childVcs = childVcs
+        self.parentVc = parentVc
+        super.init(frame: frame)
+        
+        setupUI()
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    //  MARK: ----- 定义属性
+    var startOffsetx : CGFloat = 0
+    fileprivate var isFrobitScrollDelegate : Bool = false
+    weak var delegate : PageContentViewDelegate!
+    fileprivate var childVcs : [UIViewController]
+    fileprivate weak var parentVc : UIViewController?
+    
+    
+    //  MARK: ----- 对外公开方法
+    /// 设置当前下标
+    open func setCurrentIndex(_ index : Int) {
+    
+        isFrobitScrollDelegate = true
+        
+        let offsetX = CGFloat(index) * collectionView.frame.size.width
+        collectionView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: false)
+    }
+    
+    
+    
+
+    
+    
+    
+    
+}
+
+
+// 设置UI信息
+private extension PageContentView{
+    
+    func setupUI(){
+        
+        /// 1.添加所有的子控制器
+        addAllChildVc()
+        
+        /// 2.添加collectionView
+        addSubview(collectionView)
+        
+        
+    }
+    /// 添加所有的子控制器
+    func addAllChildVc(){
+        
+        for childVc in childVcs{
+            self.parentVc?.addChildViewController(childVc)
+        }
+        
+    }
+
+    
+    
+}
+
+extension PageContentView : UICollectionViewDelegate{
+
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         isFrobitScrollDelegate = false
         /// 开始滑动的x轴的位置
@@ -86,7 +139,7 @@ class PageContentView: UIView , UICollectionViewDataSource , UICollectionViewDel
             
             //源索引
             sourceIndex = Int(currentOffsetX / scrollViewW)
-                        //目标索引
+            //目标索引
             targetIndex = sourceIndex + 1
             if targetIndex >= childVcs.count {
                 targetIndex = childVcs.count - 1
@@ -113,49 +166,20 @@ class PageContentView: UIView , UICollectionViewDataSource , UICollectionViewDel
             if sourceIndex >= childVcs.count {
                 sourceIndex = childVcs.count - 1
             }
-        
+            
         }
         
         //3.通知代理
-        delegate.contentViewDidScroll(sourceIndex: sourceIndex, targetIndex: targetIndex, progress: progress)
+        delegate.contentViewDidScroll(sourceIndex, targetIndex: targetIndex, progress: progress)
         
     }
-    
-    // MARK:- ----- 构造函数
-    init(frame: CGRect ,childVcs :[UIViewController] ,parentVc:UIViewController) {
-       
-        self.childVcs = childVcs
-        self.parentVc = parentVc
-        super.init(frame: frame)
-        
-        setupUI()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+
     
     
-    // MARK: ------ 设置UI信息
-    private func setupUI(){
-        
-        /// 1.添加所有的子控制器
-        addAllChildVc()
-        
-        /// 2.添加collectionView
-        addSubview(collectionView)
-        
-    }
-    /// 添加所有的子控制器
-    private func addAllChildVc(){
-        
-        for childVc in childVcs{
-            self.parentVc?.addChildViewController(childVc)
-        }
-        
-    }
-    
-    // MARK: ----- UIColletionViewDatasource
+}
+
+extension PageContentView : UICollectionViewDataSource{
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return childVcs.count
     }
@@ -171,17 +195,14 @@ class PageContentView: UIView , UICollectionViewDataSource , UICollectionViewDel
         
         let vc = childVcs[indexPath.row]
         vc.view.frame = cell.bounds
+        
         cell.contentView.addSubview(vc.view)
         
         return cell
         
     }
-    
-
-    
-    
-    
 
     
 }
+
 

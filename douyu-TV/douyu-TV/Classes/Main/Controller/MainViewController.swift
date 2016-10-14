@@ -14,15 +14,15 @@ class MainViewController: UITabBarController {
         super.viewDidLoad()
         
         // 1.添加所有的子控制器
-        addChildVc(storyName: "Home")
-        addChildVc(storyName: "Live")
-        addChildVc(storyName: "Follow")
-        addChildVc(storyName: "Profile")
+        addChildVc("Home")
+        addChildVc("Live")
+        addChildVc("Follow")
+        addChildVc("Profile")
 
     
     }
 
-    private func addChildVc(storyName: String){
+    fileprivate func addChildVc(_ storyName: String){
         
         // 1.获取storyBoard
         let vc = UIStoryboard.init(name: storyName, bundle: nil).instantiateInitialViewController()
