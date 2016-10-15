@@ -141,10 +141,15 @@ extension RecomendViewController : UICollectionViewDataSource,UICollectionViewDe
             cell.anchorM = anchor
             
             return cell
-        }
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kRecomendCell, for: indexPath) as! CollectionNormalCell
+        }else {
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kRecomendCell, for: indexPath) as! CollectionNormalCell
             cell.anchorM = anchor
-        return cell
+
+            return cell
+
+        }
+
         
     }
     
@@ -168,7 +173,6 @@ extension RecomendViewController : UICollectionViewDataSource,UICollectionViewDe
         
         if indexPath.section == 1 {
             return CGSize(width: kItemWidth, height: kPrettyCellH)
-            
         }
         
         return CGSize(width: kItemWidth, height: kItemHeight)

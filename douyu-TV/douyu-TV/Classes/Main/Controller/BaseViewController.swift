@@ -10,9 +10,7 @@ import UIKit
 
 class BaseViewController: UIViewController {
 
-    
-    
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         // 1.添加UI信息

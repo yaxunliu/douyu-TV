@@ -19,21 +19,18 @@ class CollectionChannelCell: UICollectionViewCell {
     // 数据模型
     public var channelModel : BaseLiveGroupModel?{
         didSet{
-            // 守护模型
-            guard let model = channelModel else { return }
+         
             // 设置模型数据
-            let image = ImageResource.init(downloadURL: URL(string: model.icon_url)!, cacheKey: model.icon_url)
-            channelTitleLabel.text = model.tag_name
-            channelImageView.kf.setImage(with: image)
+            channelTitleLabel.text = channelModel?.tag_name
+            
+            let iconUrl = URL(string: channelModel?.icon_url ?? "")
+                
+            channelImageView.kf.setImage(with: iconUrl)
+                
         }
     }
     
-    // 布局子视图
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        channelImageView.layer.masksToBounds = true
-        channelImageView.layer.cornerRadius = channelImageView.frame.width * 0.5
-    }
+
     
 
 }

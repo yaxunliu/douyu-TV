@@ -25,11 +25,13 @@ class HomeChannelView: UIView {
     }
     
     override func layoutSubviews() {
+
         super.layoutSubviews()
-        layout.itemSize = CGSize(width: frame.width * 0.22, height: self.frame.height)
         
-    }
+        layout.itemSize = CGSize(width: self.bounds.width * 0.22, height: self.bounds.height)
+        
     
+    }
     
     
     /// 频道模型数组
@@ -38,6 +40,7 @@ class HomeChannelView: UIView {
         didSet{
             // 刷新collectionView
             channelCollectionView.reloadData()
+
         }
     }
 

@@ -31,21 +31,27 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Img_default" translatesAutoresizingMaskIntoConstraints="NO" id="c6K-dX-h7l">
                         <color key="backgroundColor" red="0.97254901959999995" green="0.42745098040000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="40" id="VUv-dS-duL"/>
-                            <constraint firstAttribute="width" constant="40" id="poT-wH-DaQ"/>
+                            <constraint firstAttribute="height" constant="45" id="VUv-dS-duL"/>
+                            <constraint firstAttribute="width" constant="45" id="poT-wH-DaQ"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <real key="value" value="22.5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="pFo-h1-JDn" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="1WZ-DG-03y"/>
+                <constraint firstAttribute="trailing" secondItem="pFo-h1-JDn" secondAttribute="trailing" id="3Y6-fV-h4u"/>
                 <constraint firstItem="c6K-dX-h7l" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" constant="-10" id="M9m-C1-tDf"/>
+                <constraint firstItem="pFo-h1-JDn" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="QnF-RA-9qU"/>
                 <constraint firstAttribute="trailing" secondItem="FDz-oT-5oV" secondAttribute="trailing" id="SCT-cb-I2o"/>
                 <constraint firstItem="FDz-oT-5oV" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ZpX-o5-7fJ"/>
                 <constraint firstAttribute="bottom" secondItem="FDz-oT-5oV" secondAttribute="bottom" id="dqi-8C-wBv"/>
-                <constraint firstItem="pFo-h1-JDn" firstAttribute="top" secondItem="c6K-dX-h7l" secondAttribute="bottom" constant="6" id="lPX-cS-lEX"/>
                 <constraint firstItem="c6K-dX-h7l" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="qmw-ks-O9e"/>
-                <constraint firstAttribute="trailing" secondItem="pFo-h1-JDn" secondAttribute="trailing" id="zqv-p2-sF4"/>
+                <constraint firstItem="pFo-h1-JDn" firstAttribute="top" secondItem="c6K-dX-h7l" secondAttribute="bottom" constant="3" id="xcz-1U-CnL"/>
             </constraints>
             <size key="customSize" width="123" height="112"/>
             <connections>
